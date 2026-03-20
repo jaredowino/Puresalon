@@ -811,138 +811,245 @@ nav.scrolled .hamburger span           { background: var(--deep); }
 .why-float-text { font-size: .78rem; font-weight: 600; line-height: 1.4; }
 .why-float-sub  { font-size: .7rem; color: var(--muted); font-weight: 400; }
 
-/* ── BOOKING ── */
-#booking {
-  padding: 90px 0;
-  background: var(--ivory);
-}
 
+/* =====================================
+   Booking Section — Modern Clean Styling
+   ===================================== */
+
+/* Container & grid */
 .booking-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem; /* increased spacing between left and right columns */
+  margin-top: 2rem;
 }
 
-.booking-form {
-  background: var(--white);
-  border-radius: 22px;
-  padding: 36px;
-  box-shadow: 0 8px 40px rgba(24,15,7,.07);
+/* Each column */
+.booking-grid > div {
+  flex: 1 1 350px; /* slightly larger minimum width */
 }
 
-.booking-form h3 { font-family: var(--ff-serif); font-size: 1.6rem; margin-bottom: 6px; }
-.booking-form p  { font-size: .83rem; color: var(--muted); margin-bottom: 28px; }
-
-.form-group { margin-bottom: 18px; }
-
-.form-group label {
-  display: block;
-  font-size: .78rem;
-  font-weight: 600;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 7px;
+/* Section heading */
+.booking-form h3, .booking-grid h3 {
+  font-size: clamp(2rem, 4vw, 3rem); /* bigger and responsive */
+  font-family: var(--ff-serif);
+  margin-bottom: 0.8rem;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+/* Subtext */
+.booking-form p, .booking-grid p.sub {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+/* Form inputs & selects */
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
   width: 100%;
-  padding: 13px 16px;
-  border: 1.5px solid var(--gold-pale);
-  border-radius: 10px;
-  font-family: var(--ff-sans);
-  font-size: .88rem;
-  color: var(--deep);
-  background: var(--cream);
-  transition: border-color .2s, box-shadow .2s;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  margin-top: 6px;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
   outline: none;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(184,146,74,.12);
-}
-
-.form-group textarea { resize: vertical; min-height: 90px; }
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.form-submit {
-  width: 100%;
-  padding: 15px;
-  font-size: .95rem;
-  letter-spacing: .04em;
-  margin-top: 6px;
-}
-
-.urgency-banner {
-  background: linear-gradient(135deg, var(--gold), #8b6520);
-  border-radius: 14px;
-  padding: 18px 22px;
-  margin-bottom: 24px;
-  display: flex; align-items: center; gap: 14px;
-}
-
-.urgency-icon { font-size: 1.6rem; }
-.urgency-text { font-size: .82rem; color: #fff; line-height: 1.5; }
-.urgency-text strong { font-size: .9rem; display: block; margin-bottom: 2px; }
-
-.info-item {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  margin-bottom: 22px;
-}
-
-.info-icon {
-  width: 46px; height: 46px;
-  background: var(--gold-pale);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; flex-shrink: 0;
-}
-
-.info-title { font-weight: 600; font-size: .9rem; margin-bottom: 3px; }
-.info-text  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
-
-.wa-big {
-  width: 100%;
-  text-align: center;
-  padding: 17px;
+/* Labels */
+.booking-form label {
+  font-weight: 600;
   font-size: 1rem;
+  color: #333;
+}
+
+/* Form rows for date + phone */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* WhatsApp booking button */
+.btn-gold {
+  background-color: #d4af37;
+  color: #fff;
+  border: none;
+  padding: 16px 28px; /* slightly larger button */
+  font-size: 1.15rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-gold:hover {
+  background-color: #bfa233;
+  transform: translateY(-2px);
+}
+
+/* Success message */
+.form-success {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  background: #f0faf4;
+  border: 1.5px solid #25d366;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #1a5c30;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* subtle shadow */
+}
+
+.form-success.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* Left info column text */
+.booking-grid > div:first-child span.tag {
+  font-weight: 700;
+  color: #d4af37;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: inline-block;
+}
+
+.booking-grid > div:first-child .info-item {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .booking-grid {
+    gap: 2rem;
+  }
+}
+/* ── LOCATION ── */
+.map-section {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.map-title {
+  font-size: 2.4rem;
+  font-family: var(--ff-serif);
+  margin-bottom: 8px;
+}
+
+.map-sub {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+/* Card style map */
+.map-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 3px solid #f3f3f3;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* Map iframe */
+.map-card iframe {
+  width: 100%;
+  height: 450px; /* bigger */
+  border: none;
+}
+.review-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Inputs */
+.review-section input,
+.review-section textarea {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px auto;
+  display: block;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Star rating */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 2.5rem; /* BIG stars */
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.star-rating span {
+  color: #ccc;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.star-rating span:hover {
+  transform: scale(1.2);
+}
+
+/* Active stars */
+.star-rating .active {
+  color: #d4af37; /* gold */
+}
+
+/* Button */
+#sendReviewBtn {
+  background: #25d366;
+  color: white;
+  padding: 14px 25px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
   margin-top: 10px;
 }
-
-/* ── LOCATION ── */
-#location {
-  padding: 90px 0;
-  background: var(--cream);
+/* Button */
+.map-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 30px;
+  background: #d4af37;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.location-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 50px;
-  align-items: center;
+.map-btn:hover {
+  background: #bfa233;
+  transform: translateY(-2px);
 }
-
-.map-wrap {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 12px 50px rgba(24,15,7,.12);
-  height: 360px;
-}
-.map-wrap iframe { width: 100%; height: 100%; border: 0; }
-
 .location-details h3   { font-family: var(--ff-serif); font-size: 2rem; margin-bottom: 8px; }
 .location-details .sub { margin-bottom: 28px; }
 
@@ -1168,3 +1275,4 @@ footer {
   .pricing-tabs              { gap: 6px; }
   .ptab                      { padding: 8px 16px; font-size: .78rem; }
 }
+                           
