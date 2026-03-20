@@ -1,12 +1,10 @@
 /* ============================================
-   PURE SALON — JAVASCRIPT (FULL FIXED VERSION)
+   PURE SALON — FULL FIXED JAVASCRIPT
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ════════════════════════════════════════
-     1. NAV — scroll effect
-  ════════════════════════════════════════ */
+  /* 1. NAV — scroll effect */
   var navbar = document.getElementById('navbar');
   if (navbar) {
     window.addEventListener('scroll', function () {
@@ -14,9 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ════════════════════════════════════════
-     2. MOBILE MENU
-  ════════════════════════════════════════ */
+  /* 2. MOBILE MENU */
   var hamburger  = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobileMenu');
 
@@ -32,9 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mobileMenu) mobileMenu.classList.remove('open');
   };
 
-  /* ════════════════════════════════════════
-     3. SCROLL REVEAL
-  ════════════════════════════════════════ */
+  /* 3. SCROLL REVEAL */
   var revealEls = document.querySelectorAll('.reveal');
 
   if (revealEls.length > 0) {
@@ -58,9 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  /* ════════════════════════════════════════
-     4. PRICING TABS
-  ════════════════════════════════════════ */
+  /* 4. PRICING TABS */
   window.switchTab = function (id, btn) {
     var lists = document.querySelectorAll('.price-list');
     var tabs  = document.querySelectorAll('.ptab');
@@ -75,9 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (btn) btn.classList.add('active');
   };
 
-  /* ════════════════════════════════════════
-     5. TESTIMONIALS
-  ════════════════════════════════════════ */
+  /* 5. TESTIMONIALS */
   var track = document.getElementById('testiTrack');
   var dotsContainer = document.getElementById('testiDots');
 
@@ -105,34 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  /* ════════════════════════════════════════
-     6. LIGHTBOX
-  ════════════════════════════════════════ */
-  window.openLightbox = function (src) {
-    var box = document.getElementById('lightbox');
-    var img = document.getElementById('lightboxImg');
-    if (!box || !img) return;
-
-    img.src = src;
-    box.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
-
-  window.closeLightbox = function () {
-    var box = document.getElementById('lightbox');
-    if (!box) return;
-
-    box.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') window.closeLightbox();
-  });
-
-  /* ════════════════════════════════════════
-     7. BOOKING FORM
-  ════════════════════════════════════════ */
+  /* 6. BOOKING FORM */
   (function () {
     const btn = document.getElementById('whatsappBtn');
     const form = document.getElementById('bookingForm');
@@ -179,9 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
-  /* ════════════════════════════════════════
-     8. REVIEW SYSTEM (FIXED)
-  ════════════════════════════════════════ */
+  /* 7. REVIEW SYSTEM */
   const stars = document.querySelectorAll('#starRating span');
   const reviewBtn = document.getElementById('sendReviewBtn');
   let rating = 0;
@@ -219,5 +180,61 @@ document.addEventListener('DOMContentLoaded', function () {
       window.open(`https://wa.me/254741593962?text=${text}`, '_blank');
     });
   }
+
+  /* 8. BOSS-LEVEL GALLERY LIGHTBOX */
+  (function() {
+    const galleryImages = document.querySelectorAll(".gallery-item img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
+    const closeBtn = document.querySelector(".close");
+
+    if (!galleryImages.length || !lightbox || !lightboxImg) return;
+
+    let currentIndex = 0;
+    const imagesArray = Array.from(galleryImages).map(img => img.src);
+
+    galleryImages.forEach((img, i) => {
+      img.parentElement.addEventListener("click", () => {
+        currentIndex = i;
+        lightbox.style.display = "flex";
+        lightboxImg.src = imagesArray[currentIndex];
+      });
+    });
+
+    function showImage() {
+      lightboxImg.src = imagesArray[currentIndex];
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = "none";
+    }
+
+    function changeSlide(dir) {
+      currentIndex += dir;
+      if (currentIndex < 0) currentIndex = imagesArray.length - 1;
+      if (currentIndex >= imagesArray.length) currentIndex = 0;
+      showImage();
+    }
+
+    nextBtn?.addEventListener("click", () => changeSlide(1));
+    prevBtn?.addEventListener("click", () => changeSlide(-1));
+    closeBtn?.addEventListener("click", closeLightbox);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") changeSlide(1);
+      if (e.key === "ArrowLeft") changeSlide(-1);
+      if (e.key === "Escape") closeLightbox();
+    });
+
+    let startX = 0;
+    lightbox.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+    lightbox.addEventListener("touchend", e => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) changeSlide(1);
+      if (endX - startX > 50) changeSlide(-1);
+    });
+  })();
 
 });
